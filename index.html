@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue 3 Basics</title>
+        
+    </head>
+    <body>
+        <div id="app">      <!-- call app in js-->
+            {{ greeting }} <!-- inside the two curly braces will be parsed as JS by vue-->
+        </div>
+
+        <script src="https://unpkg.com/vue@next"></script>  <!-- import vue3 and use it-->
+        <script>
+            let app = Vue.createApp({
+                data: function(){
+                    return {
+                        greeting: 'Hello Vue 3!'
+                    }
+                }
+            })
+            app.mount('#app')   // connect vue to div
+        </script>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue 3 Basics</title>
+        <style>
+            .box {
+                background-color: purple;
+                height: 200px;
+                width: 200px;
+            }
+
+            [v-cloak]{          /*"v-cloak" for prevent show all boxes*/
+                display: none;
+            }
+        </style>
+    </head>
+    <body> <!-- Vue.js directives-->
+        <div id="app" v-cloak>      <!-- call app in js--> <!-- "v-cloak" for prevent rendering all boxes while refeshing-->
+            {{ greeting }} <!-- inside the two curly braces will be parsed as JS by vue-->
+            <input @keyup.enter="greet(greeting +'!!!!! ')" v-model="greeting" /> <!-- could changing the greeting value in JS with input-->
+            <!-- @keyup.enter is for listening to the input of Enter-key, and run method "greet" -->
+
+            <hr />     <!-- divide page with a horizontal role-->
+
+            <button @click="toggleBox">Show Box</button>    <!-- @click.left means only listen to left click-->
+            <!-- <button v-on:click="isVisible = !isVisible">Show Box</button> -->          <!-- Listen to events and trigger while True-->
+            <!--<button @click="isVisible = !isVisible">Show Box</button>-->                <!-- Use @ is the same-->
+            <!-- @click.prevent.stop :  .prevent is for stopping submit form;  .stop is for stopping propagation( 防止出发上一级事件 )-->
+
+            <div v-if="isVisible" class="box"></div>  <!-- if statement in Vue.js for value "isVisible" to render--> 
+            <!-- <div v-show="isVisible" class="box"></div>--> <!-- "v-show", boolean, same as "v-if", but can be still rendered, but the style is "none" -->
+
+        </div>
+
+        <script src="https://unpkg.com/vue@next"></script>  <!-- import vue3 and use it-->
+        <script>
+            let app = Vue.createApp({
+                data: function(){
+                    return {
+                        greeting: 'Hello Vue 3!',
+                        isVisible: false,     // for if statement of show the box
+                    }
+                },
+                methods: {
+                    toggleBox(){
+                        this.isVisible = !this.isVisible
+                    },
+                    greet(greeting) {
+                        console.log(greeting)
+                    }
+                }
+            })
+            app.mount('#app')   // connect vue to div
+        </script>
+    </body>
+</html>
